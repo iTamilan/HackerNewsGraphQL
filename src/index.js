@@ -40,11 +40,11 @@ const server = new ApolloServer({
     ...req,
     prisma
   }),
-  playground: '/playground',
+  // playground: '/playground',
   // debug: process.env.NODE_ENV === 'development'
 })
 
-server.listen(8080, '35.200.150.210')
+server.listen(3000)
   .then(({
     url,
     server
