@@ -1,13 +1,14 @@
 const {
   ApolloServer,
-  makeExecutableSchema
+  gql
 } = require('apollo-server')
-const {
-  importSchema
-} = require('graphql-import')
+
+const typeDefs = require('./typedefs')
+
 const {
   prisma
 } = require('./generated/prisma-client')
+
 const Query = require('./resolvers/Query')
 const Mutation = require('./resolvers/Mutation')
 const User = require('./resolvers/User')
@@ -25,15 +26,16 @@ const resolvers = {
 }
 
 // 3
-const typeDefs = importSchema('src/schema.graphql')
 
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers
-})
+// const schema = makeExecutableSchema({
+//   typeDefs,
+//   resolvers
+// })
 
 const server = new ApolloServer({
-  schema: schema,
+  typeDefs,
+  resolvers,
+  // schema: schema,
   context: ({
     req
   }) => ({
